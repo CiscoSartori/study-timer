@@ -1,4 +1,4 @@
-# electron-vue-example
+# study-timer
 
 ## Project setup
 ```
