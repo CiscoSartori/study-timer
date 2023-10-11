@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="hello">
     
   </div>
@@ -19,4 +19,4 @@ export default class HelloWorld extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-</style>
+</style> -->

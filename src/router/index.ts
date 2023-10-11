@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'clock',
     component: () => import( '../views/AboutView.vue')
   },
+  // {
+  //   path: '/drawer',
+  //   name: 'drawer',
+  //   component: () => import( '../views/drawer/DrawerView.vue')
+  // },
   {
     path: '/',
     name: 'home',

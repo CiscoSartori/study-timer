@@ -1,30 +1,22 @@
 <template>
-  <div class="about">
-    <p class="letter" id="timer" >{{count}}</p>
-    
-    <button @click="play">play</button>
-    <button @click="play">play</button>
-    <button @click="play">play</button>
-    <div><input class="search" id="time" placeholder="Limit" aria-label="Limit"></div>
-  </div>
+  <h1>about</h1>
 </template>
 
-<script lang="ts">
-
-import { store } from '../store'
-
+<script>
 export default {
-
   data() {
-      return {
-        count: store.state.count,
-      };
+    return {
+      message: 'Hello, Vue!',
+    };
+  },
+  methods: {
+    updateMessage() {
+      // Step 2: Modify the data
+      this.message = 'Updated Message!';
     },
-  methods:{
-    play() {
-      store.commit('change',21)
-    },
-
-  }
-}
+  },
+};
 </script>
+
+<style>
+</style>

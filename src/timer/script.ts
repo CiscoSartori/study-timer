@@ -1,60 +1,62 @@
-class Timer{
-    state:number
-    timeCount:number
-    timeLimit:number
-    minute:number
-    myInterval:any
+// export default class Timer{
+//     focus:number
+//     short_Brake:number
+//     long_Brake:number
+//     state:number
+//     work_rounds:number
+//     timeCount:number
+//     total:number
+//     myInterval:any
     
-    constructor(){
-        this.state = 1
-        this.timeCount = 0
-        this.timeLimit =1
-        this.minute = 60
-        this.myInterval
-      }
-      start(){
-        this.myInterval = setInterval(()=>{
-          this.state % 2 === 0 ? this.timeLimit = 5 * 60: this.timeLimit = 1 * 60
-          this.timeCount += 1
-          const timeCountdown = this.timeLimit - this.timeCount
-          const clockCountdown = timeCountdown 
-          const min = Math.floor(clockCountdown / (this.minute))
-          const sec = Math.floor(clockCountdown % (this.minute))
-        //   document.getElementById("time").value = clockCountdown;
-        const input = document.getElementById('timer') as HTMLInputElement | null;
-            if(input != null){
-                input.innerHTML = min+':'+sec
-            }
+//     constructor(){
+//         this.focus=  10,
+//         this.short_Brake= 6,
+//         this.long_Brake= 20,
 
-        //   document.getElementById("timer").innerHTML = min+':'+sec
-    
-          if (this.timeCount >= this.timeLimit) {
-            this.state++
-            this.timeCount = 0
-            clearInterval(this.myInterval);
-          }
-        }, 1000)
-    
-      }
-      pause(){
-        clearInterval(this.myInterval)
-      }
-      skip(){
-        this.state++
-        this.timeCount = 0
-        clearInterval(this.myInterval);
-      }
-      close(){
-        // window.myAPI.closeApp()
-      
-      }
+//         // this.Limit= "Limit",
+        
+//         this.state= 1,
+//         this.work_rounds = 3,
+//         this.timeCount= 0,
+//         this.total= 0
+//       }
+//       start(){
+//         let focus = this.focus* 60
+//         let short_Brake = this.short_Brake* 60
+//         let long_Brake = this.long_Brake* 60
 
-}
+//         this.myInterval = setInterval(()=>{
+//           var timeLimit = this.state % 2 === 0 ? short_Brake : focus
+//           if (this.state== this.work_rounds*2) {timeLimit = long_Brake}
+//           this.timeCount += 1
+//           var timeCountdown = timeLimit - this.timeCount
+//           var clockCountdown = timeCountdown 
+//           var min = Math.floor(clockCountdown / (60))
+//           var sec = Math.floor(clockCountdown % (60))
 
-  // document.getElementById("closeBtn").addEventListener("click", window.myAPI.closeApp())
-  const timer = new Timer()
+//           // this.Limit = min +':'+ sec
+
+          
+          
+//           if (this.timeCount >= timeLimit) {
+//             if(this.state % 2 !== 0 ){
+//                 this.total +=this.timeCount
+//             }
+//             this.state++
+//             this.timeCount = 0
+//             clearInterval(this.myInterval);
+//           }
+//         }, 1000)
+//       }
+//       pause(){
+//         clearInterval(this.myInterval)
+//       }
+//       skip(){
+//         this.state
+//         this.timeCount = 0
+//         clearInterval(this.myInterval);
+//       }
+// }
 
 
-export default timer
-  
   

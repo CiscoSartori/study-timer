@@ -19,15 +19,20 @@ import { createStore } from 'vuex'
 export const store = createStore({
   state () {
     return {
-      count: 0,
-      focus: 10,
+      focus: 1,
       short_Brake:6,
-      long_Brake:20
+      long_Brake:20,
     }
   },
   mutations: {
-    change (state:any,change:number) {
-      state.count = change
-    }
+    setFocus (state:any,change:number) {
+      state.focus = change
+    },
+    setShort_Brake (state:any,change:number) {
+      state.short_Brake = change
+    },
+    setLong_Brake (state:any,change:number) {
+      state.long_Brake = change
+    },
   }
 })

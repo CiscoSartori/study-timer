@@ -1,15 +1,25 @@
 <script lang="ts" setup>
-
+import { ref } from 'vue';
+import DrawerView from '@/components/drawer/DrawerView.vue'
+let collapsed = ref(false)
 </script>
 
 <template>
-    <!-- <div class="header">
-      <router-link class='header' to='/' ><img id="closeBtn" src="./assets/logo.png" alt="menu"></router-link>
+
+    <div class="header">
+      <div :class="[collapsed ? 'collapsed' : '']">
+        <div class="v-shape"  @click="collapsed = !collapsed"></div>
+      </div>
+      
         <div class="exe">
-            <h1 class="exe2">─</h1>
-            <h1 class="exe2">✖</h1>
+          <div class="--shape"></div>
+          <div class="x-shape"></div>
         </div>
-      </div> -->
+      </div>
+      <Transition name="slide-fade">
+          <DrawerView v-if="collapsed"/>
+      </Transition>
+      <!-- <router-link to="/drawer">Clock</router-link>| -->
     <!-- <router-link to='/'>Home</router-link> |
     <router-link to="/clock">Clock</router-link>|
     <router-link to="/texte">Texte</router-link> -->
@@ -30,14 +40,11 @@ body{
     margin: 0%;
 
 }
-.header {
-    display: flex;
-    height: 55px;
-    text-align: center;
-    background: aquamarine;
-    color: rgb(0, 0, 0);
-    font-size: 5px;
-    justify-content: space-between;
+
+.menu{
+  display: flex;
+  flex-direction: column;
+  height: 10%;
 }
 
 .exe{
@@ -45,22 +52,117 @@ body{
     padding-right: 4%;
     display: flex;
 }
-.exe2{
-    padding-right: 20%;
-}
 
 .letter{
-    color: aquamarine;
+    color: rgb(87, 196, 160);
     margin: 70px;
     font-size:300%;
 }
-.search{
-    margin: 15px;
-    text-align: center
+
+/* 
+.collapsed {
+    background-color: rgb(74, 125, 131);
 }
-.button{
-  width: 10%;
-  height: 10%;
+
+/* header shape */
+
+.header {
+    display: flex;
+    height: 55px;
+    text-align: center;
+    background-color: rgb(35, 35, 35);
+    color: rgb(0, 0, 0);
+    font-size: 5px;
+    justify-content: space-between;
+}
+
+.v-shape{
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.v-shape::after,
+.v-shape::before{
+  content: "";
+  border-radius: 20px;
+  position: absolute;
+  width: 40%;
+  height: 3px;
+  background-color: black;
+  top: 49%;
+  left: 49%;
+  transform-origin: 50% 50%;
+}
+.v-shape::after{
+  transform: translate(0%, -5px)
+}
+.v-shape::before{
+  transform: translate(0%, 5px);
+  width: 30%;
+}
+
+
+.--shape{
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.--shape::after {
+  content: "";
+  border-radius: 20px;
+  position: absolute;
+  width: 40%;
+  height: 3px;
+  background-color: black;
+  top: 49%;
+  left: 49%;
+  transform-origin: 50% 50%;
+}
+
+.--shape::before {
+  transform: rotate(45deg);
+}
+.x-shape {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.x-shape::before,
+.x-shape::after {
+  content: "";
+  border-radius: 20px;
+  position: absolute;
+  width: 50%;
+  height: 3px;
+  background-color: black;
+  top: 49%;
+  left: 49%;
+  transform-origin: 50% 50%;
+}
+.x-shape::before {
+  transform: rotate(45deg);
+}
+
+.x-shape::after {
+  transform: rotate(-45deg);
+}
+
+/* Transition animation */
+
+.slide-fade-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.7s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(-45px);
+  opacity: 0;
 }
 
 </style>
