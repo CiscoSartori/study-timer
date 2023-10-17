@@ -1,10 +1,15 @@
 <template>
     <div class="about">
-      <p class="letter">{{Limit}}</p>
+      <p class="letter2 ">{{state % 2 !== 0? 'Focus':'Brake'}}</p>
+      <p class="letter extra">{{Limit}}</p>
+
       
+      <div><p class="" >{{ Math.floor(total % (60))+':'+Math.floor(total / (60))}}</p></div>
       <div class="circle" @click="button"><div :class="play? 'stop':'play'"></div></div>
-      <button class="bb" @click="skip"><div></div></button>
-      <div><p class="" >{{total/60}}</p></div>
+    </div>
+    <div>
+      <div class="bb" @click="skip"><h1 class="skip">skip</h1></div>
+
     </div>
   </template>
   
@@ -12,7 +17,6 @@
   
   import { textChangeRangeIsUnchanged } from 'typescript';
 import { store } from '../store'
-
 
 
   export default {
@@ -23,10 +27,10 @@ import { store } from '../store'
         long_Brake: store.state.long_Brake*60,
 
         Limit:store.state.focus+":00",
-        state:1,
-        work_rounds :3,
+        state:store.state.state,
+        work_rounds :3*2,
         timeCount:0,
-        total:0,
+        total:store.state.total,
         play:false,
 
         myInterval:setInterval(()=>{clearInterval},100),
@@ -53,8 +57,11 @@ import { store } from '../store'
           if (this.timeCount >= timeLimit) {
             if(this.state % 2 !== 0 ){
               this.total +=this.timeCount
+              store.commit("setTotal",this.total)
             }
+            this.play = false
             this.state++
+            store.commit("setState", this.state)
             this.Limit = this.verify()/60+":00"
             this.timeCount = 0
             clearInterval(this.myInterval);
@@ -67,6 +74,7 @@ import { store } from '../store'
       },
       skip(){
         this.state++
+        store.commit("setState", this.state)
         this.Limit = this.verify()/60+":00"
         this.timeCount = 0
         this.play = false
@@ -74,7 +82,7 @@ import { store } from '../store'
       },
       verify(){
         var timeLimit = this.state % 2 === 0 ? this.short_Brake : this.focus
-          if (this.state == this.work_rounds*2) {timeLimit = this.long_Brake}
+          if (this.state % this.work_rounds === 0) {timeLimit = this.long_Brake}
         return timeLimit
       },
       button(){return this.play? this.pause():this.start()}
@@ -84,23 +92,46 @@ import { store } from '../store'
   };
   </script>
   
-  <style>
-.bb{
-  background-color: #202020;
+<style>
+.letter2{
+  color: rgb(0, 174, 174);
+  font-size: 21px;
+  margin-bottom: 2%;
+  margin-top: 10%;
+  }
+.extra{
+  margin: 0%;
+  }
+.skip{
+  margin-top: 50%;
+  font-size: 12px;
+  color: black;
 }
-.circle {
+.bb{
+  background-color: blue;
+  width: 40px;
+  height: 15px;
   margin-left: auto;
   margin-right: auto;
-            width: 45px;
-            height: 45px;
-            -webkit-border-radius: 25px;
-            -moz-border-radius: 25px;
-            border-radius: 25px;
-            background: blue;
-            border: 2.5px;
-            border-color: black;
-            border-style: solid;
-         }
+  border-radius: 50px;
+  border: 2.5px;
+  border-color: black;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  margin-top: 12%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: blue;
+  border: 2.5px;
+  border-color: black;
+  border-style: solid;
+}
 /* .about{
 } */
 

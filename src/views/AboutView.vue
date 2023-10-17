@@ -1,18 +1,24 @@
 <template>
-  <h1>about</h1>
+<button @click="sound">h1das</button>
+  <audio
+    id="audio"
+    ref="audio"
+    :src="path"
+  ></audio>
 </template>
 
 <script>
+ 
 export default {
   data() {
     return {
-      message: 'Hello, Vue!',
+      path: '@/assets/quinta.mp3',
     };
   },
   methods: {
-    updateMessage() {
-      // Step 2: Modify the data
-      this.message = 'Updated Message!';
+    sound() {
+      this.$refs['audio'].volume = 1
+      this.$refs['audio'].play()
     },
   },
 };

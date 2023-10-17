@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import DrawerView from '@/components/drawer/DrawerView.vue'
 let collapsed = ref(false)
+
 </script>
 
 <template>

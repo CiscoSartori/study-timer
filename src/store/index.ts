@@ -22,6 +22,8 @@ export const store = createStore({
       focus: 1,
       short_Brake:6,
       long_Brake:20,
+      total:0,
+      state:1,
     }
   },
   mutations: {
@@ -33,6 +35,12 @@ export const store = createStore({
     },
     setLong_Brake (state:any,change:number) {
       state.long_Brake = change
+    },
+    setTotal(state:any,change:number) {
+      state.total = change
+    },
+    setState(state:any,change:number) {
+      state.state = change
     },
   }
 })
