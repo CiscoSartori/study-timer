@@ -20,10 +20,6 @@ let collapsed = ref(false)
       <Transition name="slide-fade">
           <DrawerView v-if="collapsed"/>
       </Transition>
-      <!-- <router-link to="/drawer">Clock</router-link>| -->
-    <!-- <router-link to='/'>Home</router-link> |
-    <router-link to="/clock">Clock</router-link>|
-    <router-link to="/texte">Texte</router-link> -->
   <router-view/>
 </template>
 
@@ -59,13 +55,6 @@ body{
     margin: 70px;
     font-size:300%;
 }
-
-/* 
-.collapsed {
-    background-color: rgb(74, 125, 131);
-}
-
-/* header shape */
 
 .header {
     display: flex;
@@ -149,8 +138,6 @@ body{
 .x-shape::after {
   transform: rotate(-45deg);
 }
-
-/* Transition animation */
 
 .slide-fade-enter-active {
   transition: all 0.5s ease-out;

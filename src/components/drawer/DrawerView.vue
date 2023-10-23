@@ -1,12 +1,11 @@
 <template>
     <div class = "drawer">
-        <router-link class = "img" to="/"><img class = "img" src="@/assets/white.png"></router-link>
-        <router-link class = "img" to="/texte"><img class = "img" src="@/assets/white.png"></router-link>
+        <router-link class = "img" to="/"><img class = "img" src="@/assets/play.png"></router-link>
+        <router-link class = "img" to="/timerSet"><img class = "img" src="@/assets/setting.png"></router-link>
         <router-link class = "img" to="/clock"><img class = "img" src="@/assets/white.png"></router-link>
     </div>
 </template>
 <script>
-
 
 export default{
 
@@ -26,4 +25,5 @@ export default{
     height: 90%;
     margin:3px;
 }
+
 </style>
