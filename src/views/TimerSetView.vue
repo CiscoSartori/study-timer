@@ -1,34 +1,33 @@
 <template>
   <div class="timer">
-
     <h1 class="leater-Timer www">Focus</h1>
     <div class="save">
       <div class="box" @click="setFocus(-1)">
         <i class="arrow left" ></i>
       </div>
-      <h1>{{ focus }}</h1>
+      <h1>{{ $store.state.focus }}</h1>
       <div class="box" @click="setFocus(1)">
         <i class="arrow right" ></i>
       </div>
     </div>
 
-    <h1 class="leater-Timer www">Short_Brake</h1>
+    <h1 class="leater-Timer www">Short Brake</h1>
     <div class="save">
       <div class="box" @click="setShort_Brake(-1)">
         <i class="arrow left" ></i>
       </div>
-      <h1>{{ short_Brake }}</h1>
+      <h1>{{ $store.state.short_Brake }}</h1>
       <div class="box" @click="setShort_Brake(1)">
         <i class="arrow right" ></i>
       </div>
     </div>
     
-    <h1 class="leater-Timer www">Long_Brake</h1>
+    <h1 class="leater-Timer www">Long Brake</h1>
     <div class="save">
       <div class="box" @click="setLong_Brake(-1)">
         <i class="arrow left" ></i>
       </div>
-      <h1>{{ long_Brake }}</h1>
+      <h1>{{ $store.state.long_Brake }}</h1>
       <div class="box" @click="setLong_Brake(1)">
         <i class="arrow right" ></i>
       </div>
@@ -44,21 +43,24 @@ import { ref } from 'vue';
 export default {
   data(){
     return{
-      focus : store.state.focus,
-      short_Brake: store.state.short_Brake,
-      long_Brake: store.state.long_Brake,
     }
   },
   methods:{
     setFocus(change){
-      store.commit('setFocus',this.focus += change)
+      const focus = parseInt(this.$store.state.focus)
+      this.$store.dispatch('saveFocus', focus + change);
     },
     setShort_Brake(change){
-      store.commit('setShort_Brake',this.short_Brake += change)
+      const short_Brake = parseInt(this.$store.state.short_Brake)
+      this.$store.dispatch('saveShort_Brake', short_Brake + change);
     },
     setLong_Brake(change){
-      store.commit('setLong_Brake',this.long_Brake += change)
-    }
+      const long_Brake = parseInt(this.$store.state.long_Brake)
+      this.$store.dispatch('saveLong_Brake', long_Brake + change);
+    },
+    loadFromLocalStorage() {
+      this.$store.dispatch('loadAllData');
+    },
   }
 
 

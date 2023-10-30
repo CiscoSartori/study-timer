@@ -30,6 +30,19 @@ async function createWindow() {
   }
 }
 
+// ipcMain.on('window-close', (event, arg) => {
+//   app.close()
+// })
+
+// ipcMain.on('window-minimize', (event, arg) => {
+//   if (arg) {
+//     app.hide()
+//   } else {
+//     app.minimize()
+//   }
+// })
+
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()

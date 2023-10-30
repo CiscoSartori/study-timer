@@ -1,10 +1,11 @@
 <template>
+  <h1>{{ loadFromLocalStorage() }}</h1>
     <div class="about">
       <p class="letter2 ">{{state % 2 !== 0? 'Focus':'Brake'}}</p>
       <p class="letter extra">{{Limit}}</p>
 
       
-      <div><p class="" >{{ Math.floor(total / (60*60))+':'+ Math.floor(total/60 % (60))}}</p></div>
+      <div><p class="" >{{ Math.floor(today / (60*60))+':'+ Math.floor(today/60 % (60))}}</p></div>
       <div class="circle" @click="button"><div :class="play? 'stop':'play'"></div></div>
     </div>
     <div>
@@ -30,7 +31,9 @@ export default {
       state:store.state.state,
       work_rounds :3*2,
       timeCount:0,
+      today:store.state.today,
       total:store.state.total,
+
       play:false,
 
       myInterval:setInterval(()=>{clearInterval},100),
@@ -47,8 +50,7 @@ export default {
         
         if (this.timeCount >= timeLimit) {
           if(this.state % 2 !== 0 ){
-            this.total +=this.timeCount
-            store.commit("setTotal",this.total)
+            this.setTotalAndToday()
           }
           this.saveStatusAndStopCount()
         }
@@ -84,6 +86,15 @@ export default {
       var sec = Math.floor(timeCountdown % (60))
       sec = sec.toLocaleString(undefined,{minimumIntegerDigits: 2})
       return min +':'+ sec
+    },
+    loadFromLocalStorage() {
+      this.$store.dispatch('loadAllData');
+    },
+    setTotalAndToday(){
+      this.today +=this.timeCount
+      const total = parseInt(this.$store.state.total)
+      this.$store.dispatch('saveTotal', total + this.timeCount);
+      store.commit("setToday",this.today)
     },
 
     button(){return this.play? this.pause():this.start()}

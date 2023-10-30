@@ -14,7 +14,7 @@ export default{
 
 <style>
 .drawer{
-    position: absolute;
+  position: absolute;
   height: 55px;
   display: flex;
   flex-direction: column;

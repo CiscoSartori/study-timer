@@ -1,25 +1,23 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import DrawerView from '@/components/drawer/DrawerView.vue'
+import Titlebar from '@/components/TitlebarView.vue'
+
 let collapsed = ref(false)
 
 </script>
 
 <template>
-
-    <div class="header">
-      <div :class="[collapsed ? 'collapsed' : '']">
-        <div class="v-shape"  @click="collapsed = !collapsed"></div>
-      </div>
-      
-        <div class="exe">
-          <div class="--shape"></div>
-          <div class="x-shape"></div>
-        </div>
-      </div>
-      <Transition name="slide-fade">
-          <DrawerView v-if="collapsed"/>
-      </Transition>
+  <div class="header">
+    <div :class="[collapsed ? 'collapsed' : '']">
+      <div class="v-shape"  @click="collapsed = !collapsed"></div>
+    </div>
+    <Titlebar/>
+  </div>
+  
+    <Transition name="slide-fade">
+        <DrawerView v-if="collapsed"/>
+    </Transition>
   <router-view/>
 </template>
 
@@ -91,53 +89,6 @@ body{
   width: 30%;
 }
 
-
-.--shape{
-  width: 50px;
-  height: 50px;
-  position: relative;
-}
-
-.--shape::after {
-  content: "";
-  border-radius: 20px;
-  position: absolute;
-  width: 40%;
-  height: 3px;
-  background-color: black;
-  top: 49%;
-  left: 49%;
-  transform-origin: 50% 50%;
-}
-
-.--shape::before {
-  transform: rotate(45deg);
-}
-.x-shape {
-  width: 50px;
-  height: 50px;
-  position: relative;
-}
-
-.x-shape::before,
-.x-shape::after {
-  content: "";
-  border-radius: 20px;
-  position: absolute;
-  width: 50%;
-  height: 3px;
-  background-color: black;
-  top: 49%;
-  left: 49%;
-  transform-origin: 50% 50%;
-}
-.x-shape::before {
-  transform: rotate(45deg);
-}
-
-.x-shape::after {
-  transform: rotate(-45deg);
-}
 
 .slide-fade-enter-active {
   transition: all 0.5s ease-out;
